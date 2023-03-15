@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Load Data</title>
+    <style>
+      body {
+        font-family: Arial, Helvetica, sans-serif;
+      }
+      .container {
+        max-width: 800px;
+        margin: 0 auto;
+        padding: 20px;
+        background-color: #f2f2f2;
+        border-radius: 10px;
+        box-shadow: 0px 0px 10px #ccc;
+      }
+      .form-group {
+        margin-bottom: 20px;
+      }
+      .form-group label {
+        display: block;
+        font-weight: bold;
+        margin-bottom: 10px;
+      }
+      .form-group input[type="text"],
+      .form-group input[type="file"] {
+        display: block;
+        width: 100%;
+        padding: 10px;
+        border-radius: 5px;
+        border: 1px solid #ccc;
+      }
+      .form-group input[type="submit"] {
+        background-color: #4CAF50;
+        color: white;
+        border: none;
+        border-radius: 5px;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+      }
+      .form-group input[type="submit"]:hover {
+        background-color: #3e8e41;
+      }
+      table {
+        width: 100%;
+        margin-bottom: 20px;
+        border-collapse: collapse;
+      }
+      table td,
+      table th {
+        padding: 10px;
+        border: 1px solid #ccc;
+        text-align: center;
+      }
+      table th {
+        background-color: #4CAF50;
+        color: white;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="container">
+      <h1>Get Best Model for your dataset</h1>
+      <form method="post" enctype="multipart/form-data" action="/process_csv">
+        <div class="form-group">
+          <label for="csvfile1">Load Dataset</label>
+          <input type="file" name="csvfile1" id="csvfile1" accept=".csv">
+        </div>
+        <div class="form-group">
+          <label for="param1">Target Variable Name</label>
+          <input type="text" name="param1" id="param1">
+        </div>
+        <div class="form-group">
+          <label for="param2">Test Size</label>
+          <input type="text" name="param2" id="param2">
+        </div>
+        <div class="form-group">
+          <input type="submit" name="submit" value="Submit">
+        </div>
+        {% if output %}
+        <div class="form-group">
+            <label for="result">Result</label>
+            {{ output | safe }}
+        </div>
+        {% endif %}
+      </form>
+    </div>
+  </body>
+</html>
